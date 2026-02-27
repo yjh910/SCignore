@@ -52,3 +52,11 @@ Starcraft Remastered Chat Blocker.
 - Windows 10
 - pydivert (packet capture)
 - tkinter (GUI)
+
+## 빌드 / Build
+
+```
+pip install -r requirements.txt
+pip install pyinstaller
+pyinstaller --windowed --uac-admin --name SCignore scignore.py
+```
