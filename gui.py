@@ -106,10 +106,9 @@ class App:
         # Callbacks are called from capture thread → schedule on main thread
         on_found    = lambda pid:         self.root.after(0, self._on_player_found, pid)
         on_selected = lambda pid:         self.root.after(0, self._on_player_selected, pid)
-        on_request  = lambda method, url: self.root.after(0, self._on_request, method, url)
 
         try:
-            start_proxy(on_found, on_selected, on_request)
+            start_proxy(on_found, on_selected)
         except Exception as e:
             messagebox.showerror("Error", f"Failed to start:\n{e}")
             return
