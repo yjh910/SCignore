@@ -11,9 +11,13 @@ Starcraft Remastered Chat Blocker.
 ## 설치 / Installation
 
 ```
-⚠ 본 프로그램은 패킷을 분석하고 자동으로 명령어를 입력하는 기능을 포함하고 있어, Windows SmartScreen이나 일부 백신에서 악성코드로 오인될 수 있습니다. 프로그램은 오픈 소스로 투명하게 관리되며 어떠한 개인정보도 수집하지 않습니다.
+⚠ 본 프로그램은 패킷을 분석하고 자동으로 명령어를 입력하는 기능을 포함하고 있습니다.
+ Windows SmartScreen이나 일부 백신에서 악성코드로 오인될 수 있습니다.
+ 프로그램은 오픈 소스로 투명하게 관리되며 어떠한 개인정보도 수집하지 않습니다.
 
-⚠ Because this tool analyzes packets and simulates keyboard inputs, it may be flagged as a false positive by Windows SmartScreen or other antivirus software. This program is open-source and does not collect any personal data.
+⚠ This tool analyzes packets and simulates keyboard inputs.
+ It may be flagged as a false positive by Windows SmartScreen or other antivirus software.
+ This program is open-source and does not collect any personal data.
 ```
 
 [Github Release Page](https://github.com/yjh910/SCignore/releases/tag/v1.0.0)
