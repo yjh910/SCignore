@@ -52,7 +52,7 @@ class _Capture:
     # undefined at the NETWORK layer and combining them causes Error 87.
     _FILTERS = [
         "loopback and tcp.PayloadLength > 0",   # preferred (WinDivert 2.x)
-        "tcp.PayloadLength > 0",                 # fallback (all TCP with payload)
+        "tcp.PayloadLength > 0",                # fallback (all TCP with payload)
     ]
     _SNIFF = 1   # WINDIVERT_FLAG_SNIFF — read-only, never blocks packets
 
@@ -129,12 +129,10 @@ def _notify_found(player_id: str) -> None:
     global _last_captured
     if _last_selected and player_id.lower() == _last_selected.lower():
         return
-    
     if player_id == _last_captured:
         return
     
     _last_captured = player_id
-    
     if _on_found:
         _on_found(player_id)
 
@@ -157,8 +155,8 @@ def start_proxy(
 ) -> None:
     """
     Start loopback packet capture.
-    - on_found(player_id)    — scr_mmgameloading: loading screen opponent
-    - on_selected(player_id) — scr_tooninfo: player profile clicked in-game
+    - on_found(player_id)    — scr_mmgameloading: loading screen
+    - on_selected(player_id) — scr_tooninfo: player profile clicked
     Raises RuntimeError if pydivert is missing or not running as Administrator.
     """
     global _capture, _last_captured, _last_selected
@@ -173,8 +171,7 @@ def start_proxy(
 
     if not is_admin():
         raise RuntimeError(
-            "This program must be run as Administrator.\n"
-            "Right-click scr_ignore.py → Run as administrator."
+            "This program must be run as Administrator."
         )
 
     _last_captured = ""
