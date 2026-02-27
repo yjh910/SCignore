@@ -1,4 +1,5 @@
 .venv/
+venv/
 __pycache__/
 *.pyc
 *.pyo
@@ -7,3 +8,9 @@ build/
 dist/
 *.spec
 build.txt
+
+.vscode/
+.idea/
+
+/DS_Store
+Thumbs.db
