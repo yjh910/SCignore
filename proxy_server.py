@@ -12,6 +12,7 @@ Requirements:
 import ctypes
 import threading
 from typing import Callable
+from urllib.parse import unquote
 
 try:
     import pydivert
@@ -119,12 +120,12 @@ class _Capture:
         if b"scr_mmgameloading" in payload:
             m = SCR_PATTERN.search(url)
             if m:
-                _notify_found(m.group(1))
+                _notify_found(unquote(m.group(1)))
 
         elif b"scr_tooninfo" in payload:
             m = SCR_PATTERN.search(url)
             if m:
-                _notify_selected(m.group(1))
+                _notify_selected(unquote(m.group(1)))
 
 
 # ── Player detection ──────────────────────────────────────────────────────────

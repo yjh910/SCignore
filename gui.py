@@ -117,6 +117,7 @@ class App:
 
         if KEYBOARD_AVAILABLE:
             keyboard.add_hotkey('f9', self._send_ignore)
+            keyboard.add_hotkey('f8', self._send_unignore)
 
         self.running = True
         self.dot.config(fg="#00aa00")
@@ -147,7 +148,7 @@ class App:
         """scr_mmgameloading — loading screen opponent detected."""
         self._pending_id = player_id
         self.clip_var.set(f"{player_id}")
-        self._log(f"[match]    {player_id}  →  /ignore {player_id}  (copied)")
+        self._log(f"[match]    {player_id}")
         if KEYBOARD_AVAILABLE:
             self.hotkey_var.set(f"F9  →  /ignore {player_id}")
 
@@ -156,8 +157,6 @@ class App:
         self._pending_id = player_id
         self.selected_var.set(f"{player_id}")
         self._log(f"[selected] {player_id}")
-        if KEYBOARD_AVAILABLE:
-            self.hotkey_var.set(f"F9  →  /ignore {player_id}")
 
     def _send_ignore(self) -> None:
         """F9 hotkey — type /ignore {player_id} into SC:R chat."""
@@ -167,6 +166,14 @@ class App:
         threading.Thread(target=self._type_command,
                          args=(f"/ignore {pid}",), daemon=True).start()
 
+    def _send_unignore(self) -> None:
+        """F8 hotkey — type /unignore {player_id} into SC:R chat."""
+        pid = self._pending_id
+        if not pid:
+            return
+        threading.Thread(target=self._type_command, 
+                         args=(f"/unignore {pid}",), daemon=True).start()
+
     def _type_command(self, cmd: str) -> None:
         """Type a chat command in-game: Enter → command → Enter."""
         keyboard.press_and_release('enter')
@@ -174,7 +181,7 @@ class App:
         keyboard.write(cmd, delay=0.05)
         time.sleep(0.05)
         keyboard.press_and_release('enter')
-        self.root.after(0, self._log, f"[F9] Typed: {cmd}")
+        self.root.after(0, self._log, f"Typed: {cmd}")
 
     def _log(self, msg: str) -> None:
         ts = datetime.now().strftime("%H:%M:%S")
