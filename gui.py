@@ -138,11 +138,6 @@ class App:
         self._log("Stopped.")
 
     # ── Callbacks ─────────────────────────────────────────────────────────────
-    def _on_request(self, method: str, url: str) -> None:
-        """Log SC:R API requests seen on the loopback interface."""
-        display = url if len(url) <= 90 else url[:87] + "..."
-        self._log(f"[http] {method} {display}")
-
     def _on_player_found(self, player_id: str) -> None:
         """scr_mmgameloading — loading screen opponent detected."""
         self._pending_id = player_id

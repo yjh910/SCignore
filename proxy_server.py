@@ -27,7 +27,6 @@ _last_captured: str  = ""   # dedup for scr_mmgameloading
 _last_selected: str  = ""   # dedup for scr_tooninfo
 _on_found:    Callable[[str], None] | None = None   # loading screen opponent
 _on_selected: Callable[[str], None] | None = None   # in-game profile click
-_on_request:  Callable[[str, str], None] | None = None
 _capture: "_Capture | None" = None
 
 
@@ -111,10 +110,7 @@ class _Capture:
         parts = first_line.split(" ", 2)
         if len(parts) < 2:
             return
-        method, url = parts[0], parts[1]
-
-        if _on_request:
-            _on_request(method, url)
+        url = parts[1]
 
         if b"scr_mmgameloading" in payload:
             m = SCR_PATTERN.search(url)
@@ -158,17 +154,15 @@ def _notify_selected(player_id: str) -> None:
 def start_proxy(
     on_found:    Callable[[str], None],
     on_selected: Callable[[str], None] | None = None,
-    on_request:  Callable[[str, str], None] | None = None,
 ) -> None:
     """
     Start loopback packet capture.
     - on_found(player_id)    — scr_mmgameloading: loading screen opponent
     - on_selected(player_id) — scr_tooninfo: player profile clicked in-game
-    - on_request(method,url) — every aurora-profile-by-toon request seen
     Raises RuntimeError if pydivert is missing or not running as Administrator.
     """
     global _capture, _last_captured, _last_selected
-    global _on_found, _on_selected, _on_request
+    global _on_found, _on_selected
 
     if not PYDIVERT_AVAILABLE:
         raise RuntimeError(
@@ -187,7 +181,6 @@ def start_proxy(
     _last_selected = ""
     _on_found      = on_found
     _on_selected   = on_selected
-    _on_request    = on_request
 
     _capture = _Capture()
     _capture.start()
