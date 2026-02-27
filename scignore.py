@@ -1,5 +1,5 @@
 """
-main.py (scignore.py) — Entry point for SC:R Ignore Tool.
+scignore.py — Entry point for SC:R Ignore Tool.
 
 Run this file to launch the application:
     python scignore.py
@@ -8,7 +8,6 @@ Project layout
 --------------
 scignore.py       ← entry point (this file)
 config.py         ← constants (proxy host/port, URL pattern)
-proxy_settings.py ← Windows system proxy management (winreg)
 proxy_server.py   ← HTTP proxy server and player ID detection
 gui.py            ← tkinter UI
 """

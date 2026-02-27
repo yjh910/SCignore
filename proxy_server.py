@@ -28,7 +28,6 @@ _last_selected: str  = ""   # dedup for scr_tooninfo
 _on_found:    Callable[[str], None] | None = None   # loading screen opponent
 _on_selected: Callable[[str], None] | None = None   # in-game profile click
 _on_request:  Callable[[str, str], None] | None = None
-_dev_log: Callable[[str], None] = None
 _capture: "_Capture | None" = None
 
 
@@ -160,7 +159,6 @@ def start_proxy(
     on_found:    Callable[[str], None],
     on_selected: Callable[[str], None] | None = None,
     on_request:  Callable[[str, str], None] | None = None,
-    dev_log:     Callable[[str], None] = None,
 ) -> None:
     """
     Start loopback packet capture.
@@ -170,7 +168,7 @@ def start_proxy(
     Raises RuntimeError if pydivert is missing or not running as Administrator.
     """
     global _capture, _last_captured, _last_selected
-    global _on_found, _on_selected, _on_request, _dev_log
+    global _on_found, _on_selected, _on_request
 
     if not PYDIVERT_AVAILABLE:
         raise RuntimeError(
@@ -190,7 +188,6 @@ def start_proxy(
     _on_found      = on_found
     _on_selected   = on_selected
     _on_request    = on_request
-    _dev_log       = dev_log
 
     _capture = _Capture()
     _capture.start()

@@ -107,10 +107,9 @@ class App:
         on_found    = lambda pid:         self.root.after(0, self._on_player_found, pid)
         on_selected = lambda pid:         self.root.after(0, self._on_player_selected, pid)
         on_request  = lambda method, url: self.root.after(0, self._on_request, method, url)
-        dev_log     = lambda text:        self.root.after(0, self._log, text)
 
         try:
-            start_proxy(on_found, on_selected, on_request, dev_log)
+            start_proxy(on_found, on_selected, on_request)
         except Exception as e:
             messagebox.showerror("Error", f"Failed to start:\n{e}")
             return
