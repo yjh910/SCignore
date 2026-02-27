@@ -60,7 +60,7 @@ class App:
 
         # F9 hotkey hint
         if KEYBOARD_AVAILABLE:
-            self.hotkey_var = tk.StringVar(value="F9  —  no player detected yet")
+            self.hotkey_var = tk.StringVar(value="no player detected yet")
             ttk.Label(self.root, textvariable=self.hotkey_var,
                       foreground="#888888", font=("", 8)).pack(pady=(0, 2))
         else:
@@ -70,7 +70,7 @@ class App:
 
         # In-game selected player (scr_tooninfo)
         sf2 = ttk.LabelFrame(self.root,
-                             text=" Selected Player  (click profile in-game) ",
+                             text=" Selected Player ",
                              padding=8)
         sf2.pack(fill=tk.X, padx=12, pady=(2, 4))
         self.selected_var = tk.StringVar(value="—")
@@ -143,7 +143,7 @@ class App:
         self.clip_var.set(f"{player_id}")
         self._log(f"[match]    {player_id}")
         if KEYBOARD_AVAILABLE:
-            self.hotkey_var.set(f"F9  →  /ignore {player_id}")
+            self.hotkey_var.set(f"F9 to ignore, F8 to unignore")
 
     def _on_player_selected(self, player_id: str) -> None:
         """scr_tooninfo — user clicked a player profile in-game."""
