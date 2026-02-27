@@ -28,7 +28,7 @@ Starcraft Remastered Chat Blocker.
 ## 사용방법 / Usage
 
 1. 스타크래프트 리마스터를 실행합니다.
-2. `SCignore.exe`를 실행합니다.
+2. `SCignore.exe`를 실행합니다. (관리자 권한 필요)
 3. **▶ Start Monitoring** 버튼을 눌러 패킷 캡처를 시작합니다.
 4. 접속할 ID를 선택하면 나의 ID가 **Selected Player** 항목에 표시됩니다.
 

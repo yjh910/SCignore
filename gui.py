@@ -28,7 +28,7 @@ class App:
     def __init__(self, root: tk.Tk) -> None:
         self.root        = root
         self.running     = False
-        self._pending_id = ""   # most recent player ID — sent on F9
+        self._pending_id = ""   # most recent player ID
         root.title("SC:R Ignore")
         root.resizable(False, False)
         self._build_ui()
@@ -58,7 +58,7 @@ class App:
                               command=self._toggle, width=26)
         self.btn.pack(padx=12, pady=4)
 
-        # F9 hotkey hint
+        # Hotkey hint
         if KEYBOARD_AVAILABLE:
             self.hotkey_var = tk.StringVar(value="no player detected yet")
             ttk.Label(self.root, textvariable=self.hotkey_var,
@@ -104,8 +104,8 @@ class App:
 
     def _start(self) -> None:
         # Callbacks are called from capture thread → schedule on main thread
-        on_found    = lambda pid:         self.root.after(0, self._on_player_found, pid)
-        on_selected = lambda pid:         self.root.after(0, self._on_player_selected, pid)
+        on_found    = lambda pid: self.root.after(0, self._on_player_found, pid)
+        on_selected = lambda pid: self.root.after(0, self._on_player_selected, pid)
 
         try:
             start_proxy(on_found, on_selected)

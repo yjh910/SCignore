@@ -48,8 +48,6 @@ class _Capture:
     normally and we receive a read-only copy. No reinject needed.
     """
 
-    # outbound is intentionally omitted: for loopback traffic, direction is
-    # undefined at the NETWORK layer and combining them causes Error 87.
     _FILTERS = [
         "loopback and tcp.PayloadLength > 0",   # preferred (WinDivert 2.x)
         "tcp.PayloadLength > 0",                # fallback (all TCP with payload)
