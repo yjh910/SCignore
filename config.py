@@ -4,9 +4,6 @@ config.py — Application-wide constants.
 
 import re
 
-PROXY_HOST  = "127.0.0.1"
-PROXY_PORT  = 18080
-
 # Matches: /aurora-profile-by-toon/{player_id}/{gateway_number}
 SCR_PATTERN = re.compile(r'/aurora-profile-by-toon/([^/?]+)/\d+')
 
