@@ -60,3 +60,16 @@ pip install -r requirements.txt
 pip install pyinstaller
 pyinstaller --windowed --uac-admin --name SCignore scignore.py
 ```
+
+## 단축키 변경 / Change Hotkey
+
+```python
+# gui.py
+if KEYBOARD_AVAILABLE:
+   keyboard.add_hotkey('f9', self._send_ignore)
+   keyboard.add_hotkey('f8', self._send_unignore)
+```
+
+gui.py 파일의 add_hoykey 부분을 변경하면 됩니다.
+
+변경 후, 빌드하면 exe 파일이 생성됩니다.
